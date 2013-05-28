@@ -1,0 +1,4 @@
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\ExtensionPoints\bin\Debug\ExtensionPoints.dll
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\ExtensionPoints\bin\Debug\ExtensionPoints.pdb
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\ExtensionPoints\obj\Debug\ExtensionPoints.dll
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\ExtensionPoints\obj\Debug\ExtensionPoints.pdb

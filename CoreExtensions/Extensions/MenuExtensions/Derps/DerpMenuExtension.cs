@@ -14,7 +14,8 @@ namespace MefWpfExample.Extensions.MenuExtensions.Derps
     {
         public void Launch()
         {
-            System.Windows.MessageBox.Show("Derp", "THE DERPINATOR KNOWS ALL!");
+            Console.WriteLine("Derp");
+            Console.WriteLine("THE DERPINATOR KNOWS ALL!");
         }
     }
 }

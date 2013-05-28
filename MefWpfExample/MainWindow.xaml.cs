@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MefWpfExample.Extensions;
 using MefWpfExample.Extensions.MenuExtensions;
 
 namespace MefWpfExample
@@ -24,9 +26,8 @@ namespace MefWpfExample
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CompositionContainer _container;
-        [ImportMany(typeof(IMenuExtension))]
-        public IEnumerable<Lazy<IMenuExtension, IMenuExtensionData>> MenuExtensions;
+        private ExtensionManager _extensionManager;
+        private readonly string _appDataPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MefThingy");
 
         public ObservableCollection<MenuItem> PluginMenuItems { get; private set; }
 
@@ -42,12 +43,10 @@ namespace MefWpfExample
         private void SetupPluginsMenu()
         {
             PluginMenuItems.Clear();
-            foreach (var menuExtension in MenuExtensions)
-            {
+            foreach (var menuExtension in _extensionManager.MenuExtensions) {
                 var currentParent = PluginMenu;
                 var hierarchy = menuExtension.Metadata.MenuHierarchy;
-                foreach (var entry in hierarchy)
-                {
+                foreach (var entry in hierarchy) {
                     var first = currentParent.Items.Cast<MenuItem>().FirstOrDefault(x => x.Header.ToString() == entry);
                     if(first == null)
                     {
@@ -58,45 +57,30 @@ namespace MefWpfExample
                         items.Add(menuItem);
                         currentParent = menuItem;
                     }
-                    else
-                    {
+                    else {
                         currentParent = first;
                     }
                 }
-                var pluginEntry = new MenuItem()
-                                      {
+                var pluginEntry = new MenuItem() {
                                           Header = menuExtension.Metadata.MenuExtensionName
                                       };
                 pluginEntry.Click += (sender, ev) => menuExtension.Value.Launch();
                 var collection = (ICollection<MenuItem>)currentParent.ItemsSource;
                 collection.Add(pluginEntry);
-                
             }
         }
 
         private void InitialiseMefParts()
         {
-            //An aggregate catalog that combines multiple catalogs
-            var catalog = new AggregateCatalog();
-            //Adds all the parts found in the same assembly as the Program class
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(MainWindow).Assembly));
-
-            //Create the CompositionContainer with the parts in the catalog
-            _container = new CompositionContainer(catalog);
-
-            //Fill the imports of this object
-            try
+            var appDataPath = System.IO.Path.Combine(_appDataPath, "plugins");
+            if(!File.Exists(appDataPath))
             {
-                _container.ComposeParts(this);
+                Directory.CreateDirectory(appDataPath);
             }
-            catch (CompositionException compositionException)
-            {
-                Console.WriteLine(compositionException.ToString());
-            }
+            _extensionManager = new ExtensionManager(appDataPath);
         }
 
-        private void MenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void MenuItemClick(object sender, RoutedEventArgs e) {
             Close();
         }
     }

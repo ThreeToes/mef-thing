@@ -1,0 +1,9 @@
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\obj\Debug\CoreExtensions.csprojResolveAssemblyReference.cache
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\obj\Debug\CoreExtensions.Properties.Resources.resources
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\obj\Debug\CoreExtensions.csproj.GenerateResource.Cache
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\bin\Debug\CoreExtensions.dll
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\bin\Debug\CoreExtensions.pdb
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\obj\Debug\CoreExtensions.dll
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\obj\Debug\CoreExtensions.pdb
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\bin\Debug\ExtensionPoints.dll
+C:\Users\Stephen\documents\visual studio 2012\Projects\MefWpfExample\CoreExtensions\bin\Debug\ExtensionPoints.pdb
