@@ -2,3 +2,5 @@
 /_ReSharper.MefWpfExample
 /MefWpfExample/obj
 /MefWpfExample/bin
+*.dll
+*.pdb
